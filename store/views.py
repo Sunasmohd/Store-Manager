@@ -9,10 +9,7 @@ from rest_framework.viewsets import ModelViewSet
 from rest_framework.mixins import *
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import permissions
-from .pagination import PageNumberPagination
 from uuid import UUID
-from django.shortcuts import render
-
 
 
 class ProductImageViewSet(ModelViewSet):
@@ -26,11 +23,10 @@ class ProductImageViewSet(ModelViewSet):
 
 
 class ProductViewSet(ModelViewSet):
-  queryset = Product.objects.prefetch_related('images').all()
+  queryset = Product.objects.prefetch_related('images','promotions').all()
   serializer_class = ProductSerializer
   filter_backends = [DjangoFilterBackend]
   filterset_fields = ['collection_id']
-  pagination_class = PageNumberPagination
   
   def get_serializer_context(self):
       return {'request':self.request}
