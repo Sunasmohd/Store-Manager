@@ -1,0 +1,79 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Store Manager</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;1,400;1,500&family=Rubik:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="{% static 'core/styles.css' %}">
+</head>
+<body>
+
+
+  <div class="top-container rbk">
+    <img src="{% static 'core/store.png' %}" alt="">
+    <div class="main-title-container">
+      <h1>STORE MANAGER</h1>
+      <p>A simple API for managing store</p>
+    </div>
+  </div>
+
+  
+  {% for api_info in api_infos %}
+  <div class="api-info-container">
+    <div class="api-info-title">
+      <h4>{{api_info.name}}</h4>
+      <hr>
+    </div>
+    <ul class="api-info-list hidden list-group rbk wrap-word">
+      {% if api_info.name == 'HTTP Methods' %}
+      <li class="alert alert-primary"><button class="btn btn-primary btn-sm me-3">GET</button>/get <span class="text-dark ms-5">request to GET</span></li>
+      <li class="alert alert-success"><button class="btn btn-success btn-sm me-3">POST</button>/post <span class="text-dark ms-5">request to CREATE</span></li>
+      <li class="alert alert-warning"><button class="btn btn-warning btn-sm me-3">PUT</button>/put <span class="text-dark ms-5">request to UPDATE</span></li>
+      <li class="alert alert-info"><button class="btn btn-info btn-sm me-3">PATCH</button>/patch <span class="text-dark ms-5">request to PARTIAL UPDATE</span></li>
+      <li class="alert alert-danger"><button class="btn btn-danger btn-sm me-3">DELETE</button>/delete <span class="text-dark ms-5">request to DELETE</span></li>
+      {% elif api_info.name == 'Auth' %}
+      <li class="alert alert-success"><button class="btn btn-success btn-sm me-3">POST</button>/auth/jwt/create/ <span class="text-dark ms-5">to generate a JWT token</span></li>
+      <li class="alert alert-success"><button class="btn btn-success btn-sm me-3">POST</button>/auth/jwt/refresh/ <span class="text-dark ms-5">to refresh a JWT token</span></li>
+      <li class="alert alert-primary"><button class="btn btn-primary btn-sm me-3">GET</button>/auth/users/ <span class="text-dark ms-5">to get current user(all users if admin)</span></li>
+      <li class="alert alert-success"><button class="btn btn-success btn-sm me-3">POST</button>/auth/users/ <span class="text-dark ms-5">to create a new user</span></li>
+      <li class="alert alert-primary"><button class="btn btn-primary btn-sm me-3">GET</button>/auth/users/me/ <span class="text-dark ms-5">to get current user details</span></li>
+      <li class="alert alert-warning"><button class="btn btn-warning btn-sm me-3">PUT</button>/auth/users/me/ <span class="text-dark ms-5">to update current user details</span></li>
+      <li class="alert alert-info"><button class="btn btn-info btn-sm me-3">PATCH</button>/auth/users/me/ <span class="text-dark ms-5">to partial update current user details</span></li>
+      <li class="alert alert-danger"><button class="btn btn-danger btn-sm me-3">DELETE</button>/auth/users/me/ <span class="text-dark ms-5">to delete current user details</span></li>
+      {% else %}
+      <li class="alert alert-primary"><button class="btn btn-primary btn-sm me-3">GET</button>/api{{api_info.gp}}</li>
+      <li class="alert alert-primary"><button class="btn btn-primary btn-sm me-3">GET</button>/api{{api_info.gppd}}</li>
+      
+      {% if api_info.name == 'Products' %}
+        <li class="alert alert-primary"><button class="btn btn-primary btn-sm me-3">GET</button>/api{{api_info.gp}}/?collection_id={collection_id}</li>
+      {% endif %}
+        
+      <li class="alert alert-success"><button class="btn btn-success btn-sm me-3">POST</button>/api{{api_info.gp}}</li>
+      <li class="alert alert-warning"><button class="btn btn-warning btn-sm me-3">PUT</button>/api{{api_info.gppd}}</li>
+      <li class="alert alert-info"><button class="btn btn-info btn-sm me-3">PATCH</button>/api{{api_info.gppd}}</li>
+      <li class="alert alert-danger"><button class="btn btn-danger btn-sm me-3">DELETE</button>/api{{api_info.gppd}}</li>
+      {% endif %}
+    </ul>
+  </div>
+  {% endfor %}
+
+ 
+  <script>
+    const title = document.getElementsByClassName('api-info-title') 
+    
+    for (let i = 0; i < title.length; i++) {
+      title[i].addEventListener('click', function () {
+        const list = this.nextElementSibling;
+        if (list.classList.contains('hidden')) {
+          list.classList.remove('hidden');
+        } else {
+          list.classList.add('hidden');
+        }
+      });
+    }
+  </script>
+</body>
+</html>

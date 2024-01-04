@@ -1,0 +1,92 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body{
+  background-color: rgb(238, 238, 238);
+}
+
+.top-container{
+  display: flex;
+  background-color: rgb(250, 250, 250);
+  min-height: 30vh;
+  padding: 1rem;
+  overflow: hidden;
+}
+
+.top-container img{
+  flex: 1;
+  height: auto;    
+}
+
+.main-title-container{
+  flex: 2;
+  color: rgb(54, 54, 54);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.main-title-container h1{
+  font-size: 2.5rem;
+  margin-top: 1rem;
+}
+
+
+.api-info-container{
+  background-color: rgb(238, 238, 238);
+  padding: .2rem .6rem .2rem  .6rem;
+  color: rgb(33, 33, 33);
+}
+
+.api-info-container:nth-child(2){
+  margin-top: 2rem;
+}
+
+.api-info-title h4{
+  font-size: 1.5rem;
+  font-weight: 500;
+  font-family: Dm sans;
+}
+
+.api-info-list li{
+  padding: .5rem;
+}
+
+.hidden{
+  display: none;
+}
+
+.rbk{
+  font-family: rubik;
+  font-weight: 400;
+}
+
+.wrap-word{
+  word-wrap: break-word;
+}
+
+
+@media screen and (max-width:950px) {
+  .top-container{
+    flex-direction: column;
+  }
+
+  .top-container img{
+    width: 100%;
+  }
+
+  .main-title-container h1{
+    font-size: 2rem;
+  }
+}
+
+
+@media screen and (max-width:500px) {
+  .main-title-container h1{
+    font-size: 1.5rem;
+  }
+}
